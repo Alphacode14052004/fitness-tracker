@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Your Progress</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Notes</th>
+                <th>Exercises</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for session in sessions %}
+            <tr>
+                <td>{{ session.session_date }}</td>
+                <td>{{ session.notes }}</td>
+                <td>
+                    <ul>
+                    {% for detail in session.details %}
+                        <li>{{ detail.exercise.name }}: 
+                            Sets: {{ detail.sets }}, 
+                            Reps: {{ detail.repetitions }}, 
+                            Weight: {{ detail.weight }} kg, 
+                            Duration: {{ detail.duration }}s, 
+                            Distance: {{ detail.distance }}m
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

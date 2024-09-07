@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Log Workout</h2>
+    <form method="POST">
+        <label for="session_date">Session Date</label>
+        <input type="date" id="session_date" name="session_date" required>
+        
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes"></textarea>
+        
+        <h3>Exercises</h3>
+        {% for exercise in exercises %}
+        <div>
+            <input type="checkbox" id="exercise_{{ exercise.exercise_id }}" name="exercise_id" value="{{ exercise.exercise_id }}">
+            <label for="exercise_{{ exercise.exercise_id }}">{{ exercise.name }}</label>
+            
+            <label for="sets_{{ exercise.exercise_id }}">Sets</label>
+            <input type="number" id="sets_{{ exercise.exercise_id }}" name="sets_{{ exercise.exercise_id }}">
+            
+            <label for="repetitions_{{ exercise.exercise_id }}">Repetitions</label>
+            <input type="number" id="repetitions_{{ exercise.exercise_id }}" name="repetitions_{{ exercise.exercise_id }}">
+            
+            <label for="weight_{{ exercise.exercise_id }}">Weight (kg)</label>
+            <input type="number" step="0.01" id="weight_{{ exercise.exercise_id }}" name="weight_{{ exercise.exercise_id }}">
+            
+            <label for="duration_{{ exercise.exercise_id }}">Duration (seconds)</label>
+<input type="number" id="duration_{{ exercise.exercise_id }}" name="duration_{{ exercise.exercise_id }}">
+            
+            <label for="distance_{{ exercise.exercise_id }}">Distance (meters)</label>
+            <input type="number" step="0.01" id="distance_{{ exercise.exercise_id }}" name="distance_{{ exercise.exercise_id }}">
+        </div>
+        {% endfor %}
+        
+        <button type="submit">Log Workout</button>
+    </form>
+</div>
+{% endblock %}
